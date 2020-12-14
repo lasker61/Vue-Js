@@ -8,9 +8,25 @@
 <body>
 	<div id="root">
 		{{message}} <br>
+		<button v-on:click='demo'>click</button> <br>
 		<h1>Votes={{votes}}</h1>
 		<button @click='votes--'>-</button>
-		<button v-on:click='votes++'>+</button>
+		<button v-on:click='votes++'>+</button><br>
+		<input v-model="name">
+		{{name}}
+		<br>
+		<ul>
+			<li  v-for="course in courses">
+			 {{course.title}} --{{course.trainer}}
+		   </li>
+		</ul>
+		<br>
+		<h1  v-if="seen">Congarts you have seen me</h1> <br>
+		<h1  v-if="noseen">this will not appeas beacuse i have set the value of noseen to false</h1>
+		<br>
+		<h4 v-for='todo in todos'>{{todo.text}}</h4>
+		<h5 v-if='num>0'>It is a positive number</h5>
+		<h5 v-else='num<0'>It is a negative number</h5>
 
 	</div>
 
@@ -21,7 +37,28 @@
 			el:'#root',
 			data:{
 				message:'simple Number increasing dicreasing vue app',
-				votes:0
+				votes:0,
+				name:'',
+				courses:[
+				        {title:'html', trainer:'Nahid'},
+				        {title:'css', trainer:'sakib'},
+				        {title:'js', trainer:'rakib'},
+				        {title:'php', trainer:'dipu'}
+
+				        ],
+				seen:true,
+				noseen:false,
+				num:-2,
+				todos:[
+				       {text:'learn javascript'},
+				       {text:'then learn vue js'},
+				       {text:'build something awesome'}				       				       
+				      ]        
+			},
+			methods:{
+				demo:function(){
+					this.message=this.message.split('').reverse().join('')
+				}
 			}
 		})
 	
